@@ -20,14 +20,15 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => { 
     socket.emit ("me", socket.id);
 
-    socket.on ("disconnect", () => {
-        socket.broadcast.emit("call ended")
-    })
-    socket.on ("callUser", ({userToCall, signalData, from, name}) => {
-        io.to(userToCall).emit("callUser", {signal: signalData,from, name})
+    socket.on ("callUser", ({userToCall, signal, from, name}) => {
+        console.log("name", name)
+        io.to(userToCall).emit("callUser", {signal,from, name})
     })
     socket.on("answerCall", (data) => {
         io.to(data.to).emit("callaccepted", data.signal, data.name);
+    })
+    socket.on ("disconnect", () => {
+        socket.broadcast.emit("call ended")
     })
 });
 
