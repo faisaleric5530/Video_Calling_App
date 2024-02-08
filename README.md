@@ -1,2 +1,2 @@
-# Video_Chat_App
-This is Video_Chat_App Git Repository
+# Video_Calling_App
+This is Video_Calling_App Git Repository
